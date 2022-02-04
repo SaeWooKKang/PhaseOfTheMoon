@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { lunCycle } from "../actions/lunCycleAction";
+import { lunCycle } from "../redux/actions/lunCycleAction";
 import { useDispatch, useSelector } from "react-redux";
-
 
 const Luncycle = () => {
   const dispatch = useDispatch();
@@ -14,11 +13,14 @@ const Luncycle = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div>
-          <div>월출: {data  && data.moonrise}</div>
-          <div>월중: {data  && data.moontransit}</div>
-          <div>월몰: {data  && data.moonset}</div>
+        <div className="lunCycle">
+          <div className="cycle">
+            <div className="moonrise">월출: {data  && data.moonrise}</div>
+            <div className="moontransit">월중: {data  && data.moontransit}</div>
+            <div className="moontset">월몰: {data  && data.moonset}</div>
+          </div>
         </div>
+        
       )}
     </div>)
 };

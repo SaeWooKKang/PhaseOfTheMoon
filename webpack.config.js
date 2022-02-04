@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  name: 'login-setting',
+  name: 'basic-setting',
   mode: 'development',
   devtool: 'eval',
   resolve: {
@@ -9,7 +9,7 @@ module.exports = {
   },
 
   entry: {
-    app: "./App"
+    app: "./components/App"
   },
 
   module: {
@@ -20,6 +20,10 @@ module.exports = {
         options: {
           presets:["@babel/preset-env", "@babel/preset-react"]
         }
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
