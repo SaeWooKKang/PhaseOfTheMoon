@@ -11,26 +11,26 @@
 }
 
 body {
-  background-color: #0e2861;
+  background-color: #20428a;
   font-family: "IBMPlexSansKR-Regular";
 }
 
 .container {
-  height: 80vh;
+  height: 90vh;
   display: flex;
   align-items: center;
 }
 .container .YMD {
   font-size: 11px;
-  margin-top: 10px;
 }
 .container .lunContainer {
   flex-direction: column;
-  width: 65vw;
-  box-shadow: rgba(255, 251, 251, 0.24) 0px 3px 8px;
-  background-color: #ece9e9;
-  padding-bottom: 10px;
+  width: 75vh;
+  height: 50vh;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  background-color: #e2dddd;
   border-radius: 15px;
+  padding: 15px 5px 15px 5px;
 }
 .container .lunContainer .lunAge {
   margin-top: 10px;
@@ -47,5 +47,3 @@ body {
 .container .lunContainer .lunCycle .cycle {
   flex-direction: column;
 }
-
-/*# sourceMappingURL=style.css.map */

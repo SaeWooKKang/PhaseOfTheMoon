@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'IBMPlexSansKR-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+%flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  @extend %flex-box;
+  background-color: rgb(32, 66, 138);
+  font-family: 'IBMPlexSansKR-Regular';
+}
+
+.container {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+
+  .YMD {
+    @extend %flex-box;
+    font-size: 11px;
+  }
+  .lunContainer {
+    @extend %flex-box;
+    flex-direction: column;
+    width: 75vh;
+    height: 50vh;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    background-color: #e2dddd;
+    border-radius: 15px;
+    padding: 15px 5px 15px 5px;
+    
+    .lunAge {
+      margin-top: 10px;
+      
+      .image {
+        @extend %flex-box;
+        font-size: 90px;
+      }
+      .date {
+        @extend %flex-box;
+        font-size: 13px;
+      }
+    }
+    .lunCycle {
+      @extend %flex-box;
+      margin-top: 20px;
+
+      .cycle {
+        @extend %flex-box;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
