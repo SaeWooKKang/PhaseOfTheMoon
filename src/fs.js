@@ -1,17 +1,14 @@
 exports.date = () => {
-  const plusZero = a => a > 9 ? a : `0${a}`;
+  const plusZero = v => /../.test(v) ? v : `0${v}`
   
   const now = new Date();
 
-  const year = String(now.getFullYear());
-  const month = String(plusZero(now.getMonth() + 1));
-  const date = String(plusZero(now.getDate())); 
+  const year = now.getFullYear();
+  const month = plusZero(now.getMonth() + 1);
+  const date = plusZero(now.getDate()); 
 
   return {year, month, date};
 };
-
-
-
 
 
 

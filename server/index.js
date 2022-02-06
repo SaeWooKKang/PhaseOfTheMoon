@@ -1,7 +1,7 @@
 const express =  require('express');
 const app = express();
 const axios = require('axios');
-const fs = require('../fs');
+const fs = require('../src/fs');
 
 const getLunday = async () => {
   const {year, month, date} = fs.date();
