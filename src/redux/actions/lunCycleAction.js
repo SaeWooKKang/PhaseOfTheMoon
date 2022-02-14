@@ -6,7 +6,6 @@ export const lunCycle = createAsyncThunk(
   "lun/cycle",
   async (data, thunkAPI) => {
     const response = await axios.get('http://localhost:3000/GET/lun/cycle');
-    const {moonrise, moonset, moontransit } = response.data.items.item
     
     return response.data.items.item;
   }

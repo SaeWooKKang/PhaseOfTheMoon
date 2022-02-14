@@ -6,8 +6,9 @@ exports.date = () => {
   const year = now.getFullYear();
   const month = plusZero(now.getMonth() + 1);
   const date = plusZero(now.getDate()); 
+  const YMD = year + month + date;
 
-  return {year, month, date};
+  return {year, month, date, YMD};
 };
 
 
