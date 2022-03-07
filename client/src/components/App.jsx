@@ -1,11 +1,11 @@
 import React from 'react';
 import Luncycle from './Luncycle';
 import Lunday from './Lunday';
-import '../../dist/style.css'
+import '../../../dist/style.css';
 
 const fs = require('../fs');
 
-const Client = () => {
+const App = () => {
   const {year, month, date} = fs.date();
 
   return (
@@ -21,4 +21,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default App;

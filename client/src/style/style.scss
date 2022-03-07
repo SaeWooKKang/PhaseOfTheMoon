@@ -29,8 +29,8 @@ body {
   .lunContainer {
     @extend %flex-box;
     flex-direction: column;
-    width: 75vh;
-    height: 50vh;
+    width: 65vw;
+    height: 20rem;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     background-color: #e2dddd;
     border-radius: 15px;

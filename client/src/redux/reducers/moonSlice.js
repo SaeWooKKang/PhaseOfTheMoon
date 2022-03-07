@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { lunDay } from '../actions/lunDayAction';
 import { lunCycle } from "../actions/lunCycleAction";
 
-const moonSilice = createSlice({
-  name: "moon",
+const moonSlice = createSlice({
+  name: "lun",
   initialState:{
     day: {
       isLoading: false,
@@ -41,6 +41,6 @@ const moonSilice = createSlice({
   }
 });
 
-export default moonSilice.reducer;
+export default moonSlice.reducer;
 
 

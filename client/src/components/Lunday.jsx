@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Lunday = () => {
   const dispatch = useDispatch();
-  const day = useSelector((state) => state.lun.day);
+  const day = useSelector(state => state.lun.day);
 
   useEffect(()=>dispatch(lunDay()),[]);
   
@@ -50,14 +50,14 @@ const Lunday = () => {
 
   return (
     <div>
-      {day.isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <div className='lunAge'>
-          <div className='image'>{makeLunImg(day.data)}</div>
-          <div className='date'>월령 {day.data}일</div>
-        </div>
-      )}
+      {day.isLoading 
+        ? ( <div>Loading...</div> ) 
+        : (
+          <div className='lunAge'>
+            <div className='image'>{makeLunImg(day.data)}</div>
+            {!day.isLoading && <div className='date'>월령 {day.data}일</div>}
+          </div>)
+      }
     </div>
   )
 };

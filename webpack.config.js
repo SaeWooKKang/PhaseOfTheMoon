@@ -9,7 +9,7 @@ module.exports = {
   },
 
   entry: {
-    app: "./src/components/App"
+    app: "./client/src/components/index"
   },
 
   module: {
@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader', "sass-loader"]
       }
     ]
   },

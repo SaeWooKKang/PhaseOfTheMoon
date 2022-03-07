@@ -15,12 +15,13 @@ const Luncycle = () => {
       ) : (
         <div className="lunCycle">
           <div className="cycle">
-            <div className="moonrise">월출: {data  && data.moonrise}</div>
-            <div className="moontransit">월중: {data  && data.moontransit}</div>
-            <div className="moontset">월몰: {data  && data.moonset}</div>
+            {data && <>
+              <div className="moonrise">월출: {data.moonrise}</div>
+              <div className="moontransit">월중: {data.moontransit}</div>
+              <div className="moontset">월몰: {data.moonset}</div>
+            </>}
           </div>
         </div>
-        
       )}
     </div>)
 };
