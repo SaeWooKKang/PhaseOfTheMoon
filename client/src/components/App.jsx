@@ -1,6 +1,8 @@
 import React from 'react';
-import Luncycle from './Luncycle';
-import Lunday from './Lunday';
+
+import LunTime from './sections/LunTime';
+import LunImage from './sections/LunImage';
+import LunDay from './sections/Lunday';
 import '../../../dist/style.css';
 
 const fs = require('../fs');
@@ -8,14 +10,15 @@ const fs = require('../fs');
 const App = () => {
   const {year, month, date} = fs.date();
 
+  console.log('APp.js ');
+
   return (
     <div className='container'>
       <div className='lunContainer'>
-          <div className='YMD'>
-            {`${year}년 ${month}월 ${date}일 / 서울`}
-          </div>
-          <Lunday />
-          <Luncycle />
+          <div className='YMD'>{ `${year}년 ${month}월 ${date}일 / 서울` }</div>
+          <LunDay />
+          <LunImage />
+          <LunTime />
       </div>
     </div>
   );
