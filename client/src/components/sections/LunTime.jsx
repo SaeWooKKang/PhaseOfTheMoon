@@ -10,7 +10,7 @@ const LunTime = () => {
   
   return (
     <div style={{width:'100%', margin: '0'}}>
-      {isLoading ? <div>Loading...</div>
+      { isLoading ? <div style={{display:'flex', justifyContent:'center'}}>Loading...</div>
        : ( 
           <div style={{display:'flex', justifyContent:'center'}}>
             <div style={{width:'80%'}}>

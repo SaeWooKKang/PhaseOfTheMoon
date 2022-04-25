@@ -7,11 +7,11 @@ const LunDay = () => {
   const dispatch = useDispatch();
   const day = useSelector(state => state.lun.day);
 
-  useEffect(()=>dispatch(lunDay()),[]);
+  useEffect(()=>dispatch(lunDay()), []);
   
   return (
     <div>
-      {day.isLoading 
+      { day.isLoading 
         ? ( <div>Loading...</div> ) 
         : (
           <div className='lunAge'>

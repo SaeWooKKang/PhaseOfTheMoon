@@ -13,6 +13,7 @@
 body {
   background-color: #20428a;
   font-family: "IBMPlexSansKR-Regular";
+  margin: 0;
 }
 
 .container {
