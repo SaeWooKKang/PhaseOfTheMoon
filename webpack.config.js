@@ -1,4 +1,5 @@
 const path = require("path");
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   name: 'basic-setting',
@@ -18,7 +19,8 @@ module.exports = {
         test: /\.jsx?$/,
         loader: "babel-loader",
         options: {
-          presets:["@babel/preset-env", "@babel/preset-react"]
+          presets:["@babel/preset-env", "@babel/preset-react"],
+          plugins:["@babel/plugin-transform-react-inline-elements"]
         }
       },
       {
@@ -27,6 +29,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new RefreshWebpackPlugin()
+  ],
 
   output: {
     path: path.join(__dirname,"dist"),

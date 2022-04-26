@@ -4,7 +4,7 @@
   font-weight: normal;
   font-style: normal;
 }
-.container .lunContainer .lunCycle .cycle, .container .lunContainer .lunCycle, .container .lunContainer .lunAge .date, .container .lunContainer .lunAge .image, .container .lunContainer, .container .YMD, body {
+.container .lunContainer .lunPhase .image, .container .lunContainer .lunAge .date, .container .lunContainer, .container .YMD, body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,6 +13,7 @@
 body {
   background-color: #20428a;
   font-family: "IBMPlexSansKR-Regular";
+  margin: 0;
 }
 
 .container {
@@ -26,24 +27,19 @@ body {
 .container .lunContainer {
   flex-direction: column;
   width: 65vw;
-  height: 20rem;
+  height: 80vh;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  background-color: #e2dddd;
+  background-color: #d7d4df;
   border-radius: 15px;
-  padding: 15px 5px 15px 5px;
+  padding: 15px 0px 15px 0px;
 }
 .container .lunContainer .lunAge {
-  margin-top: 10px;
-}
-.container .lunContainer .lunAge .image {
-  font-size: 90px;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
 }
 .container .lunContainer .lunAge .date {
   font-size: 13px;
 }
-.container .lunContainer .lunCycle {
-  margin-top: 20px;
-}
-.container .lunContainer .lunCycle .cycle {
-  flex-direction: column;
+.container .lunContainer .lunPhase .image {
+  font-size: 3rem;
 }
