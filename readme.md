@@ -27,8 +27,8 @@
   <img width="30%" alt="스크린샷 2022-04-26 오후 9 56 31" src="https://user-images.githubusercontent.com/87258182/165306416-5304754e-b97d-4900-8d3a-a10f29c37da1.png">
   <img width="30%" alt="스크린샷 2022-04-26 오후 9 53 49" src="https://user-images.githubusercontent.com/87258182/165306501-3715b0ca-f942-401d-8f49-2769f3ee194c.png">
   <img width="30%" alt="스크린샷 2022-04-26 오후 9 56 46" src="https://user-images.githubusercontent.com/87258182/165306373-8227edac-3f5d-413d-9621-2aa88251567d.png">
-
 </p>
+
 ## File Setting
 src  
 ┃📂components  
