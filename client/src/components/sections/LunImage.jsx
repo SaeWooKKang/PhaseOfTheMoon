@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { go } from 'fxjs';
-import { useState, useEffect } from "react";
-import { useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useRef } from "react";
 
 const LunImage = () => {
-  const day = useSelector(({lun: {day}}) => day);
+  const day = useSelector(({lun: { day }}) => day);
   const { data, isLoading } = useSelector(({ lun }) => lun.cycle);
-  const [moonLocation, setMoonLocation] = useState(_middle);
-  const [time, setTime] = useState(0);
+  const [mentToggle, setMentToggle] = useState(true);
+  const [_, setRerender] = useState();
 
+  // styled-components로 변경할 css 
   const _left = useMemo(() => ({
     width: '60%',
     height: '12rem',
@@ -24,19 +25,19 @@ const LunImage = () => {
     justifyContent:'flex-end',
     alignItems:'center',
   }), []);
-  const _middle = useMemo(() => ({
+  const _center = useMemo(() => ({
     width: '60%',
     height: '12rem',
     display:'flex',
-    justifyContent:'flex-end',
+    justifyContent:'center',
     alignItems:'flex-start',
-    backgroundColor: 'red'
   }), []);
+  const styleMoonLocation = useRef(_center);
 
-  useEffect(() => setTime(toMinute(now())), []);
-  useEffect(() => {findMoonLocation}, [data]);
+  useEffect(() => findMoonLocation(), [isLoading]);
+
   // typeof data.moonset  // string
-  const makeLunImg = date => {
+  const makeLunImgByDate = date => {
     if(date < 2){
       return <div>🌚</div> // 삭
     }
@@ -81,7 +82,6 @@ const LunImage = () => {
   const toMinute = t => 
     add(numSubstr(0, 2, t) * 60,  numSubstr(2, 4, t));
 
-  // 2132
   const now = () => go(
     new Date(),
     d => add(
@@ -94,41 +94,59 @@ const LunImage = () => {
       const rise = toMinute(data.moonrise);
       const transit =  toMinute(data.moontransit);
       const set = toMinute(data.moonset);
-      const now = toMinute(now());
+      // const nowTime = toMinute(now());
+      const nowTime = 700;
 
-      if (rise < now < transit) {
-        setMoonLocation(_left);
-      }
-      if (now == transit) {
-        setMoonLocation(_middle);
-      }
-      if (transit < now < set) {
-        setMoonLocation(_right);
+     /* 
+     setRerender 함수는 styled-component 적용시 변경할것
+
+     inline css 설정시 state값 넣었더니 안되서 
+     useRef로 변수 연결한거고,
+     useRef는 변경되어도 리렌더링 되지 않으므로 강제로 리렌더링시킨 것
+     */
+      if (nowTime < rise) {
+        setMentToggle(false);
+      } else if ( nowTime < transit) {
+        styleMoonLocation.current = _left;
+        setRerender({});
+      } else if (nowTime == transit) {  
+        styleMoonLocation.current = _center;
+        setRerender({});
+      } else if (nowTime < set) {
+        styleMoonLocation.current = _right;
+        setRerender({});
+      } else {
+        setMentToggle(false);
       }
     }
   };
 
   return !(day.isLoading) && ( 
-    <div style={{ display:'flex', justifyContent:'center', width:'100%', margin: '0'}}>      
+    <div style={{ display:'flex', justifyContent:'center', width:'100%', margin: '0' }}>      
       <div style={{
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
         width:'80%'}}>
 
-        {/* 달 위치 */}
-        <div className='container-lun-img' style={ moonLocation }>
-          <div style={{
-            fontSize:'4rem',
-            }}>
-              { makeLunImg(day.data) }
+        { mentToggle || (
+          <div style={{ backgroundColor:'#fff', padding:'4px 8px', marginBottom:'12px', borderRadius:'2px' }}>
+            현재 시각은 달을 볼 수 없습니다.
+          </div>)
+        } 
+
+        <div className='container-lun-img-by-date' style={ styleMoonLocation.current }>
+          <div style={{ fontSize:'4rem' }}>
+              { makeLunImgByDate(day.data) }
           </div>
         </div>
 
-        <div style={{
-          border:'0.5px solid black',
-          width: '100%'
-        }}></div>
+        <div style={{ width:'100%', display:'flex', justifyContent:'space-around' }}>
+          <div>⇢</div>
+          <div>⇢</div>
+        </div>
+
+        <hr style={{ margin: 0, border: '0.5px solid black', width: '100%' }} />
       </div>
     </div>
   );

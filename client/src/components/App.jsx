@@ -10,10 +10,8 @@ const fs = require('../fs');
 const App = () => {
   const {year, month, date} = fs.date();
 
-  console.log('APp.js ');
-
   return (
-    <div className='container'>
+    <div className='container' style={{height:'100vh'}}>
       <div className='lunContainer'>
           <div className='YMD'>{ `${year}년 ${month}월 ${date}일 / 서울` }</div>
           <LunDay />
