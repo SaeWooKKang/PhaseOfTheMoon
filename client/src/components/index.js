@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import Client from './App';
 import store from '../redux/store';
 
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Client />
+  <Provider store={store}>  
+    <Client />  
   </Provider>,
   document.getElementById("root"));

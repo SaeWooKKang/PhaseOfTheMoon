@@ -3,6 +3,41 @@ import { useSelector } from "react-redux";
 import { go } from 'fxjs';
 import { useState, useEffect, useMemo } from "react";
 import { useRef } from "react";
+import styled from "styled-components";
+
+const LunImageWrapper = styled.div`
+  display: flex; 
+  justify-content: center; 
+  width: 100%;
+  margin: 0;
+
+  .wrapper-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+
+    .lun-img-by-date {
+      display: flex; 
+      justify-content: center; align-items: center;
+      width: 4rem; height: 4rem;
+      border-radius: 50%;
+      box-shadow: 15px -17px 20px #adacaa;
+      background-color: #fff; 
+      font-size: 4rem; 
+    }
+    .direction {
+      width: 100%; 
+      display: flex; 
+      justify-content: space-around;
+    }
+    .horizon {
+      width: 100%;
+      margin: 0; 
+      border: 0.5px solid black;
+    }
+  }
+`;
 
 const LunImage = () => {
   const day = useSelector(({lun: { day }}) => day);
@@ -122,33 +157,29 @@ const LunImage = () => {
   };
 
   return !(day.isLoading) && ( 
-    <div style={{ display:'flex', justifyContent:'center', width:'100%', margin: '0' }}>      
-      <div style={{
-        display:'flex',
-        flexDirection:'column',
-        alignItems:'center',
-        width:'80%'}}>
+    <LunImageWrapper>      
+      <div className='wrapper-child'>
 
         { mentToggle || (
-          <div style={{ backgroundColor:'#fff', padding:'4px 8px', marginBottom:'12px', borderRadius:'2px' }}>
+          <div className='ment' style={{ backgroundColor:'#fff', padding:'4px 8px', marginBottom:'12px', borderRadius:'2px' }}>
             현재 시각은 달을 볼 수 없습니다.
           </div>)
         } 
 
         <div className='container-lun-img-by-date' style={ styleMoonLocation.current }>
-          <div style={{ fontSize:'4rem' }}>
+          <div className='lun-img-by-date'>
               { makeLunImgByDate(day.data) }
           </div>
         </div>
 
-        <div style={{ width:'100%', display:'flex', justifyContent:'space-around' }}>
+        <div className='direction'>
           <div>⇢</div>
           <div>⇢</div>
         </div>
 
-        <hr style={{ margin: 0, border: '0.5px solid black', width: '100%' }} />
+        <hr className='horizon' />
       </div>
-    </div>
+    </LunImageWrapper>
   );
 };
 
