@@ -1,9 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { go } from 'fxjs';
-import { useState, useEffect, useMemo } from "react";
-import { useRef } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { canISeeTheMoonAction } from '../../redux/reducers/moonSlice';
 
 const LunImageWrapper = styled.div`
   display: flex; 
@@ -16,6 +16,7 @@ const LunImageWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     width: 80%;
+    margin-bottom: 8px;
 
     .lun-img-by-date {
       display: flex; 
@@ -39,37 +40,27 @@ const LunImageWrapper = styled.div`
   }
 `;
 
+const MoonDirection = styled.div`
+  width: 60%;
+  height: ${({ height }) => height || 'auto'};
+  margin-top: 10px;
+  display: flex;
+  justify-content: ${ ({ justifyContent }) => justifyContent || 'center' };
+  align-items: ${ ({ alignItems }) => alignItems || 'flex-start' };
+`;
+
 const LunImage = () => {
+  const dispatch = useDispatch();
   const day = useSelector(({lun: { day }}) => day);
   const { data, isLoading } = useSelector(({ lun }) => lun.cycle);
-  const [mentToggle, setMentToggle] = useState(true);
-  const [_, setRerender] = useState();
+  const [canISeeTheMoon, setCanISeeTheMoon] = useState(true);
+  const [directionCSS, setDirectionCSS] = useState({ 
+    justifyContent: '',
+    alignItems: '',
+    height:''
+  });
 
-  // styled-components로 변경할 css 
-  const _left = useMemo(() => ({
-    width: '60%',
-    height: '12rem',
-    display:'flex',
-    justifyContent:'flex-start',
-    alignItems:'center',
-  }), []);
-  const _right = useMemo(() => ({
-    width: '60%',
-    height: '12rem',
-    display:'flex',
-    justifyContent:'flex-end',
-    alignItems:'center',
-  }), []);
-  const _center = useMemo(() => ({
-    width: '60%',
-    height: '12rem',
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'flex-start',
-  }), []);
-  const styleMoonLocation = useRef(_center);
-
-  useEffect(() => findMoonLocation(), [isLoading]);
+  useEffect(() => findMoonLocationAndSet(), [isLoading]);
 
   // typeof data.moonset  // string
   const makeLunImgByDate = date => {
@@ -119,39 +110,45 @@ const LunImage = () => {
 
   const now = () => go(
     new Date(),
-    d => add(
-      String(d.getHours()),
-      String(d.getMinutes()))
+    date => add(
+      String(date.getHours()),
+      String(date.getMinutes()))
   );
 
-  const findMoonLocation = () => {
+  const findMoonLocationAndSet = () => {
     if (data) {
       const rise = toMinute(data.moonrise);
       const transit =  toMinute(data.moontransit);
       const set = toMinute(data.moonset);
-      // const nowTime = toMinute(now());
-      const nowTime = 700;
+      console.log(transit);
+      const nowTime = toMinute(now());
+      // const nowTime = 700;
 
-     /* 
-     setRerender 함수는 styled-component 적용시 변경할것
-
-     inline css 설정시 state값 넣었더니 안되서 
-     useRef로 변수 연결한거고,
-     useRef는 변경되어도 리렌더링 되지 않으므로 강제로 리렌더링시킨 것
-     */
       if (nowTime < rise) {
-        setMentToggle(false);
+        setCanISeeTheMoon(false);
       } else if ( nowTime < transit) {
-        styleMoonLocation.current = _left;
-        setRerender({});
+        setDirectionCSS({
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          height: '12rem'
+        });
+        dispatch(canISeeTheMoonAction());
       } else if (nowTime == transit) {  
-        styleMoonLocation.current = _center;
-        setRerender({});
+        setDirectionCSS({
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          height: '12rem'
+        });
+        dispatch(canISeeTheMoonAction());
       } else if (nowTime < set) {
-        styleMoonLocation.current = _right;
-        setRerender({});
+        setDirectionCSS({
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          height: '12rem'
+        });
+        dispatch(canISeeTheMoonAction());
       } else {
-        setMentToggle(false);
+        setCanISeeTheMoon(false);
       }
     }
   };
@@ -160,24 +157,27 @@ const LunImage = () => {
     <LunImageWrapper>      
       <div className='wrapper-child'>
 
-        { mentToggle || (
-          <div className='ment' style={{ backgroundColor:'#fff', padding:'4px 8px', marginBottom:'12px', borderRadius:'2px' }}>
-            현재 시각은 달을 볼 수 없습니다.
-          </div>)
-        } 
-
-        <div className='container-lun-img-by-date' style={ styleMoonLocation.current }>
+        <MoonDirection 
+          justifyContent={ directionCSS.justifyContent } 
+          alignItems={ directionCSS.alignItems }
+          height={ directionCSS.height }
+          >
           <div className='lun-img-by-date'>
               { makeLunImgByDate(day.data) }
           </div>
-        </div>
+        </MoonDirection>
 
-        <div className='direction'>
-          <div>⇢</div>
-          <div>⇢</div>
-        </div>
+        { 
+          !canISeeTheMoon || 
+            <>
+              <div className='direction'>
+                <div>⇢</div>
+                <div>⇢</div>
+              </div>
 
-        <hr className='horizon' />
+              <hr className='horizon' />
+            </>
+        }
       </div>
     </LunImageWrapper>
   );

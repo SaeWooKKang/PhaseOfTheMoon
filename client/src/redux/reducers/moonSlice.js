@@ -12,10 +12,13 @@ const moonSlice = createSlice({
     cycle: {
       isLoading: false,
       data: null
-    }
+    },
+    canISeeTheMoon: false,
   },
   reducers:{
-
+    canISeeTheMoonAction(state, action) {
+      state.canISeeTheMoon = true;
+    }
   },
   extraReducers:{
     [lunDay.pending]: (state, action) => {
@@ -41,6 +44,7 @@ const moonSlice = createSlice({
   }
 });
 
+export const { canISeeTheMoonAction } = moonSlice.actions;
 export default moonSlice.reducer;
 
 

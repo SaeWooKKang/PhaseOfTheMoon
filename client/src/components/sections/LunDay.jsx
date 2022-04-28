@@ -15,7 +15,7 @@ const LunDayWrapper = styled.div`
   }
   .lunAge {
     margin-top: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
 
     .date {
       display: flex;
