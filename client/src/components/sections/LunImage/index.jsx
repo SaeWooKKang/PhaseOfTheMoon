@@ -1,59 +1,18 @@
-import React from "react";
+import React, { useState, useEffect }from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { go } from 'fxjs';
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import { canISeeTheMoonAction } from '../../redux/reducers/moonSlice';
 
-const LunImageWrapper = styled.div`
-  display: flex; 
-  justify-content: center; 
-  width: 100%;
-  margin: 0;
-
-  .wrapper-child {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    margin-bottom: 8px;
-
-    .lun-img-by-date {
-      display: flex; 
-      justify-content: center; align-items: center;
-      width: 4rem; height: 4rem;
-      border-radius: 50%;
-      box-shadow: 15px -17px 20px #adacaa;
-      background-color: #fff; 
-      font-size: 4rem; 
-    }
-    .direction {
-      width: 100%; 
-      display: flex; 
-      justify-content: space-around;
-    }
-    .horizon {
-      width: 100%;
-      margin: 0; 
-      border: 0.5px solid black;
-    }
-  }
-`;
-
-const MoonDirection = styled.div`
-  width: 60%;
-  height: ${({ height }) => height || 'auto'};
-  margin-top: 10px;
-  display: flex;
-  justify-content: ${ ({ justifyContent }) => justifyContent || 'center' };
-  align-items: ${ ({ alignItems }) => alignItems || 'flex-start' };
-`;
+import { canISeeTheMoonAction } from '../../../redux/reducers/moonSlice';
+import { LunImageWrapper, MoonDirection } from './style';
+import { toMinute, now } from './fs'
 
 const LunImage = () => {
   const dispatch = useDispatch();
+
+  // selector
   const day = useSelector(({lun: { day }}) => day);
   const { data, isLoading } = useSelector(({ lun }) => lun.cycle);
-  const [canISeeTheMoon, setCanISeeTheMoon] = useState(true);
+  const canISeeTheMoon = useSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
+
   const [directionCSS, setDirectionCSS] = useState({ 
     justifyContent: '',
     alignItems: '',
@@ -62,7 +21,6 @@ const LunImage = () => {
 
   useEffect(() => findMoonLocationAndSet(), [isLoading]);
 
-  // typeof data.moonset  // string
   const makeLunImgByDate = date => {
     if(date < 2){
       return <div>🌚</div> // 삭
@@ -102,30 +60,14 @@ const LunImage = () => {
     }
   };
 
-  const add = (a, b) => a + b;
-  const numSubstr = (start, end, t) => Number(t.substring(start, end));
-
-  const toMinute = t => 
-    add(numSubstr(0, 2, t) * 60,  numSubstr(2, 4, t));
-
-  const now = () => go(
-    new Date(),
-    date => add(
-      String(date.getHours()),
-      String(date.getMinutes()))
-  );
-
   const findMoonLocationAndSet = () => {
     if (data) {
       const rise = toMinute(data.moonrise);
       const transit =  toMinute(data.moontransit);
       const set = toMinute(data.moonset);
-      console.log(transit);
       const nowTime = toMinute(now());
-      // const nowTime = 700;
 
       if (nowTime < rise) {
-        setCanISeeTheMoon(false);
       } else if ( nowTime < transit) {
         setDirectionCSS({
           justifyContent: 'flex-start',
@@ -147,8 +89,6 @@ const LunImage = () => {
           height: '12rem'
         });
         dispatch(canISeeTheMoonAction());
-      } else {
-        setCanISeeTheMoon(false);
       }
     }
   };

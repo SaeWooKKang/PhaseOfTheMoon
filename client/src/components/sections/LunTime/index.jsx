@@ -1,63 +1,13 @@
 import React, { useEffect } from "react";
-import { lunCycle } from "../../redux/actions/lunCycleAction";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 
-const LunTimeWrapper = styled.div`
-  width: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction:column;
-  align-items: center;
-
-  .loading-ment {
-    width: 80%;
-    display: flex; 
-    justify-content: center;
-  }
-  .cnt-rise-transit-set {
-    width: 100%;
-    display: flex; 
-    justify-content: center;
-    /* margin-top: 1.3rem; */
-    .cnt-items-rise-transit-set {
-      display: flex; 
-      width: 100%;
-      justify-content: center;
-
-    }
-  }
-  .ment {
-      background-color: #577CE9;
-      padding: 4px 8px; 
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 0.8rem;
-    }
-`;
-
-const CycleWrapper = styled.div`
-  width: 80%;
-  display:flex;
-  align-items: center;
-  font-size: 0.8rem;
-  flex-direction: ${props => props.flexDirection ? 'row' : `column`};
-  justify-content: ${props => props.flexDirection ? 'space-between': 'center' };
-
-  .item-rise-transit-set {
-    display: flex;
-    justify-content: center;
-  }
-  
-`;
+import { lunCycle } from "../../../redux/actions/lunCycleAction";
+import { LunTimeWrapper, CycleWrapper } from './style';
 
 const LunTime = () => {
   const dispatch = useDispatch();
   const { data, isLoading} = useSelector(state => state.lun.cycle);
-  // const canISeeTheMoon = useSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
-  const canISeeTheMoon = false;
+  const canISeeTheMoon = useSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
 
   useEffect(() => {dispatch(lunCycle())}, []);
   
