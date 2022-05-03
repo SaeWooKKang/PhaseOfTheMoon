@@ -3,6 +3,7 @@
     "strict": true,
     "lib": ["es2020", "dom"],
     "jsx": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "module": "CommonJS",
   }
 }

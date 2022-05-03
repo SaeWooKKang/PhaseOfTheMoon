@@ -1,7 +1,7 @@
 const express =  require('express');
 const app = express();
 const axios = require('axios');
-const fs = require('../client/src/fs');
+const fs = require('./fs');
 
 const getAPI = async params => {
   const instance = axios.create({

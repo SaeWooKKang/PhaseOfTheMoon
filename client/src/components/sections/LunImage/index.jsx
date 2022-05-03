@@ -62,6 +62,7 @@ const LunImage = () => {
 
   const findMoonLocationAndSet = () => {
     if (data) {
+      console.log(typeof data.moonrise);
       const rise = toMinute(data.moonrise);
       const transit =  toMinute(data.moontransit);
       const set = toMinute(data.moonset);

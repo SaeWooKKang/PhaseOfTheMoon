@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { FlexBox } from './common'
 
 const GlobalStyle = createGlobalStyle`
   @font-face {

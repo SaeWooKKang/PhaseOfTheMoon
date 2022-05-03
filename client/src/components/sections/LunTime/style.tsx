@@ -35,12 +35,12 @@ export const LunTimeWrapper = styled.div`
     }
 `;
 
-export const CycleWrapper = styled.div`
+export const CycleWrapper = styled.div<{ flexDirection: boolean }>`
   width: 80%;
   display:flex;
   align-items: center;
   font-size: 0.8rem;
-  flex-direction: ${props => props.flexDirection ? 'row' : `column`};
+  flex-direction: ${(props) => props.flexDirection ? 'row' : `column`};
   justify-content: ${props => props.flexDirection ? 'space-between': 'center' };
 
   .item-rise-transit-set {
