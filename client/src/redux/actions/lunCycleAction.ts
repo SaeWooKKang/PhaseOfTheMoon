@@ -26,11 +26,11 @@ export interface CycleResponse {
 
 export const lunCycle = createAsyncThunk(
   "lun/cycle",
-  async (data, thunkAPI) => {
+  async (data, thunkAPI):Promise<CycleResponse> => {
     const response = await axios.get(`${LOCAL_3000}lun/cycle`)
       .then(res => res.data.items.item)
       .catch(e => console.log(e));
     
-    return response as CycleResponse;
+    return response;
   }
 );

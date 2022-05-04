@@ -1,14 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
-import { lunDay } from '../actions/lunDayAction';
+import { lunDay, LunDayResponse} from '../actions/lunDayAction';
 import { lunCycle, CycleResponse } from "../actions/lunCycleAction";
 
-// 태그된 유니온 사용
 interface moonState {
   day: {
     isLoading: boolean;
-    data: null | number;
+    data: null | LunDayResponse;
   }
   cycle: {
     isLoading: boolean;

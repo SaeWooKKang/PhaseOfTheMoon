@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { lunCycle } from "../../../redux/actions/lunCycleAction";
+import { useAppSelector, useAppDispath } from '../../../redux/hooks';
+
 import { LunTimeWrapper, CycleWrapper } from './style';
 
 const LunTime = () => {
-  const dispatch = useDispatch();
-  const { data, isLoading} = useSelector(state => state.lun.cycle);
-  const canISeeTheMoon = useSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
+  const dispatch = useAppDispath();
+  const { data, isLoading} = useAppSelector(state => state.lun.cycle);
+  const canISeeTheMoon = useAppSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
 
-  useEffect(() => {dispatch(lunCycle())}, []);
+  useEffect(() => { dispatch(lunCycle()) }, []);
   
   return (
     <LunTimeWrapper>
       { isLoading 
-        ? <div clasName='loading-ment'>Loading...</div>
+        ? <div className='loading-ment'>Loading...</div>
         : ( 
           <>
             <div className='cnt-rise-transit-set'>

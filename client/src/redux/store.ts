@@ -5,7 +5,7 @@ const store = configureStore({
   reducer: {
     lun: moonReducer,
   },
-  // devtool: true,
+  devTools: true,
 });
 
 export default store;

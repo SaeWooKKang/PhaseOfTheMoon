@@ -1,7 +1,8 @@
 import { go } from 'fxjs';
-type NumSubStrFn = (start: number, end: number, t: string) => number;
+
 const add = (a: string, b: string) => `${a}${b}`;
 
+type NumSubStrFn = (start: number, end: number, t: string) => number;
 const numSubstr: NumSubStrFn = (start, end, t) => Number(t.substring(start, end));
 
 export const toMinute = (t: string) => 
@@ -12,4 +13,4 @@ export const now = () => go(
   (date: Date) => add(
     String(date.getHours()),
     String(date.getMinutes()))
-);
+) as unknown as string;

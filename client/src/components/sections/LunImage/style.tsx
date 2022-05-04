@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-interface MoonDirectionProps {
+export interface MoonDirectionProps {
   height: string;
   justifyContent: 'flex-start' | 'flex-end' | 'center';
-  alignItems: 'center' | 'flex-start';
+  alignItems: 'center' | 'flex-start' | 'nomal';
 }
 
 export const LunImageWrapper = styled.div`
