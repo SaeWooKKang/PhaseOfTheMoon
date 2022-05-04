@@ -6,7 +6,7 @@ import LunImage from './sections/LunImage';
 import LunDay from './sections/Lunday';
 import GlobalStyle from '../style/GlobalStyle'
 
-const fs = require('../fs');
+import { makeYearMonthDate } from '../fs';
 
 const AppWrapper = styled.div`
   height: 100vh;
@@ -36,7 +36,7 @@ const AppWrapper = styled.div`
  
 `;
 const App = () => {
-  const {year, month, date} = fs.date();
+  const {year, month, date} = makeYearMonthDate();
 
   return (
     <>

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["es2020", "dom"],
+    "jsx": "react",
+    "esModuleInterop": true,
+    "module": "CommonJS",
+  }
+}

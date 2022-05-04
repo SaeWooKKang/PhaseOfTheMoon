@@ -1,27 +1,28 @@
 import React, { useState, useEffect }from "react";
-import { useDispatch, useSelector } from "react-redux";
 
+import { useAppSelector, useAppDispath } from '../../../redux/hooks';
 import { canISeeTheMoonAction } from '../../../redux/reducers/moonSlice';
-import { LunImageWrapper, MoonDirection } from './style';
+
+import { LunImageWrapper, MoonDirection, MoonDirectionProps } from './style';
 import { toMinute, now } from './fs'
 
 const LunImage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispath();
 
   // selector
-  const day = useSelector(({lun: { day }}) => day);
-  const { data, isLoading } = useSelector(({ lun }) => lun.cycle);
-  const canISeeTheMoon = useSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
+  const day = useAppSelector(({lun: { day }}) => day);
+  const { data, isLoading } = useAppSelector(({ lun }) => lun.cycle);
+  const canISeeTheMoon = useAppSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
 
-  const [directionCSS, setDirectionCSS] = useState({ 
-    justifyContent: '',
-    alignItems: '',
+  const [directionCSS, setDirectionCSS] = useState<MoonDirectionProps>({ 
+    justifyContent: 'center',
+    alignItems: 'nomal',
     height:''
   });
 
-  useEffect(() => findMoonLocationAndSet(), [isLoading]);
+  useEffect(() => { findMoonLocationAndSet() }, [isLoading]);
 
-  const makeLunImgByDate = date => {
+  const makeLunImgByDate = (date: number) => {
     if(date < 2){
       return <div>🌚</div> // 삭
     }
@@ -62,6 +63,7 @@ const LunImage = () => {
 
   const findMoonLocationAndSet = () => {
     if (data) {
+      console.log(typeof data.moonrise);
       const rise = toMinute(data.moonrise);
       const transit =  toMinute(data.moontransit);
       const set = toMinute(data.moonset);
@@ -103,7 +105,7 @@ const LunImage = () => {
           height={ directionCSS.height }
           >
           <div className='lun-img-by-date'>
-              { makeLunImgByDate(day.data) }
+              { makeLunImgByDate(day.data as number) }
           </div>
         </MoonDirection>
 

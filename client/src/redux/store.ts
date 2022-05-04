@@ -5,7 +5,10 @@ const store = configureStore({
   reducer: {
     lun: moonReducer,
   },
-  devtool: true,
+  devTools: true,
 });
 
 export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

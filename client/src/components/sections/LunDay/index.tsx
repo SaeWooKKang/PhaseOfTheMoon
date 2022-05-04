@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 
 import { lunDay } from '../../../redux/actions/lunDayAction';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispath } from '../../../redux/hooks';
+
 import { LunDayWrapper } from './style'
 
 const LunDay = () => {
-  const dispatch = useDispatch();
-  const day = useSelector(state => state.lun.day);
+  const dispatch = useAppDispath();
+  const day = useAppSelector(state => state.lun.day);
 
-  useEffect(()=> dispatch(lunDay()), []);
+  useEffect(() => { dispatch(lunDay()) }, []);
   
   return (
     <LunDayWrapper>

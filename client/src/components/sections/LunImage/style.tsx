@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export interface MoonDirectionProps {
+  height: string;
+  justifyContent: 'flex-start' | 'flex-end' | 'center';
+  alignItems: 'center' | 'flex-start' | 'nomal';
+}
+
 export const LunImageWrapper = styled.div`
   display: flex; 
   justify-content: center; 
@@ -35,7 +41,7 @@ export const LunImageWrapper = styled.div`
   }
 `;
 
-export const MoonDirection = styled.div`
+export const MoonDirection = styled.div<MoonDirectionProps>`
   width: 60%;
   height: ${({ height }) => height || 'auto'};
   margin-top: 10px;
