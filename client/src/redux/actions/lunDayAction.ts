@@ -10,6 +10,6 @@ export const lunDay = createAsyncThunk(
       .then(res => res.data.items.item.lunAge)
       .catch(err => console.log(err));
 
-    return response;
+    return response as number;
   }
 );
