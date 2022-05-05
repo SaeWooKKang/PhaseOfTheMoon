@@ -9,7 +9,6 @@ import { toMinute, now } from './fs'
 const LunImage = () => {
   const dispatch = useAppDispath();
 
-  // selector
   const day = useAppSelector(({lun: { day }}) => day);
   const { data, isLoading } = useAppSelector(({ lun }) => lun.cycle);
   const canISeeTheMoon = useAppSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
@@ -95,32 +94,35 @@ const LunImage = () => {
     }
   };
 
-  return !(day.isLoading) && ( 
-    <LunImageWrapper>      
-      <div className='wrapper-child'>
+  return  ( 
+    <LunImageWrapper>    
+      { day.isLoading 
+        ? <div className='loading-ment'>Loading...</div> 
+        : <div className='wrapper-child'>
 
-        <MoonDirection 
-          justifyContent={ directionCSS.justifyContent } 
-          alignItems={ directionCSS.alignItems }
-          height={ directionCSS.height }
-          >
-          <div className='lun-img-by-date'>
-              { makeLunImgByDate(day.data as number) }
-          </div>
-        </MoonDirection>
-
-        { 
-          !canISeeTheMoon || 
-            <>
-              <div className='direction'>
-                <div>⇢</div>
-                <div>⇢</div>
+            <MoonDirection 
+              justifyContent={ directionCSS.justifyContent } 
+              alignItems={ directionCSS.alignItems }
+              height={ directionCSS.height }
+              >
+              <div className='lun-img-by-date'>
+                  { makeLunImgByDate(day.data as number) }
               </div>
-
-              <hr className='horizon' />
-            </>
-        }
-      </div>
+            </MoonDirection>
+    
+            { 
+              !canISeeTheMoon || 
+                <>
+                  <div className='direction'>
+                    <div>⇢</div>
+                    <div>⇢</div>
+                  </div>
+    
+                  <hr className='horizon' />
+                </>
+            }
+        </div>
+      }  
     </LunImageWrapper>
   );
 };

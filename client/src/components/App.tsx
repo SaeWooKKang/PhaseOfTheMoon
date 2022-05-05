@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import LunTime from './sections/LunTime';
 import LunImage from './sections/LunImage';
-import LunDay from './sections/Lunday';
+import LunDay from './sections/LunDay';
 import GlobalStyle from '../style/GlobalStyle'
 
 import { makeYearMonthDate } from '../fs';
@@ -33,7 +33,6 @@ const AppWrapper = styled.div`
       font-size: 0.8rem;
     }
   }
- 
 `;
 const App = () => {
   const {year, month, date} = makeYearMonthDate();
