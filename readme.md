@@ -1,7 +1,7 @@
 # 🌙 달에 관한 정보 제공 앱
 
 ## OverView
-<img width='70%' src='https://user-images.githubusercontent.com/87258182/165761724-1f4da266-5ce0-4e9e-a3ab-3a0209984c36.gif'>
+<img width='60%' src='https://user-images.githubusercontent.com/87258182/166878748-dbaf76de-a7a4-4155-8df2-3fa7fe40f0b4.gif'>
 
 ## About
 문득 달을 관측할 수 있는 시간이 궁금해졌다. 공공데이터 포털에서 관련 api를 제공하는것을 찾아 제작하게 되었다. 
@@ -10,11 +10,14 @@
 - 월령을 기반으로 달의 위상을 이모지로 표현
 - 달의 위치를 시각적으로 표현 
 
+**2022.05.05**
+- TypeScript 적용
+
 ## Stacks
 <p float='left'> 
-  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-  <img src="https://img.shields.io/badge/redux-764abc?style=for-the-badge&logo=redux&logoColor=black">
+  <img src="https://img.shields.io/badge/typescript-2F74c0?style=for-the-badge&logo=typescript&logoColor=white">
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white">
+  <img src="https://img.shields.io/badge/redux-764abc?style=for-the-badge&logo=redux&logoColor=white">
   <img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
 </p>
 
