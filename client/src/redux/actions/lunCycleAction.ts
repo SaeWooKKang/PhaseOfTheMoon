@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import 'regenerator-runtime';
-import { LOCAL_3000 } from "../../config";
+import { LUN_HOST } from "../../config";
 
 export interface CycleResponse {
   astm: "string";
@@ -27,7 +27,7 @@ export interface CycleResponse {
 export const lunCycle = createAsyncThunk(
   "lun/cycle",
   async (data, thunkAPI):Promise<CycleResponse> => {
-    const response = await axios.get(`${LOCAL_3000}lun/cycle`)
+    const response = await axios.get(`${LUN_HOST}lun/cycle`)
       .then(res => res.data.items.item)
       .catch(e => console.log(e));
     
