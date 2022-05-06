@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack serve --env development",
-    "dev": "concurrently \"npm run webpack\" \"npm run start --prefix ../server\""
+    "dev": "concurrently \"npm run webpack\" \"npm run start --prefix ../server\"",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
