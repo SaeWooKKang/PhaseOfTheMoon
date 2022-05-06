@@ -2,6 +2,7 @@ const express =  require('express');
 const app = express();
 const axios = require('axios');
 const fs = require('./fs');
+const port = 3000;
 
 const getAPI = async params => {
   const instance = axios.create({
@@ -49,6 +50,6 @@ app.get("/lun/cycle", (req,res) => {
     });
   });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || port, () => {
   console.log("server was connected");
 });
