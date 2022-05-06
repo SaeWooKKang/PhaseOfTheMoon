@@ -1,1 +1,1 @@
-export const LOCAL_3000 = 'http://localhost:3000/';
+export const LUN_HOST = 'https://phase-of-the-moon.herokuapp.com/';
