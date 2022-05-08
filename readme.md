@@ -10,8 +10,12 @@
 - 월령을 기반으로 달의 위상을 이모지로 표현
 - 달의 위치를 시각적으로 표현 
 
+## Update
 **2022.05.05**
 - TypeScript 적용
+
+**2022.04.28**
+- SCSS -> Styled-Components
 
 ## Stacks
 <p float='left'> 
