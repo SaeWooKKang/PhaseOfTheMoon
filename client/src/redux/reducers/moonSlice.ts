@@ -42,7 +42,7 @@ const moonSlice = createSlice({
     },
     [lunDay.fulfilled.type]: (state: moonState, action: PayloadAction<number>) => {
       state.day.isLoading = false;
-      state.day.data = action.payload ;
+      state.day.data = action.payload;
     },
     [lunDay.rejected.type]: (state: moonState) => {
       state.day.isLoading = false;
