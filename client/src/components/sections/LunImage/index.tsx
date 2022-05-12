@@ -12,6 +12,7 @@ const LunImage = () => {
 
   const day = useAppSelector(({lun: { day }}) => day);
   const { data, isLoading } = useAppSelector(({ lun }) => lun.cycle);
+  
   const canISeeTheMoon = useAppSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
   
   const [directionCSS, setDirectionCSS] = useState<MoonDirectionProps>({ 
@@ -61,22 +62,23 @@ const LunImage = () => {
     }
   };
 
+  /**
+   * API로 월출 월중 월몰 데이터 받아서 
+   * date.prototype.getTime으로 숫자로 바꿔서
+   * 위치 비교하여 css 지정
+   */
   const findMoonLocationAndSet = () => {
     if (data) {
       const { year, month, date } = makeYearMonthDate();
 
-      const rise = cutToHourAndMinute(data.moonrise);
-      const transit = cutToHourAndMinute(data.moontransit);
-      const set = cutToHourAndMinute(data.moonset);
-      const nowTime = cutToHourAndMinute(now());
+      const times = [data.moonrise, data.moontransit, data.moonset, now()];
+      const [rise, transit, set, present] = times
+        .map(time => cutToHourAndMinute(time));
 
-      let riseTime = getTime(+year, +month, +date, +rise.h, +rise.m);
-      let transitTime = getTime(+year, +month, +date, +transit.h, +transit.m);
-      let setTime = getTime(+year, +month, +date, +set.h, +set.m);
+      let [riseTime, transitTime, setTime, nowTime] = [rise, transit, set, present]
+        .map(t => getTime(+year, +month, +date, +t.h, +t.m));
 
-      // 이건 현재 시간 기준이 맞는데
-      let nowTime2 = getTime(+year, +month, +date, +nowTime.h, +nowTime.m);
-
+      // 월중 월몰이 월출과 date가 다를경우 date에 + 1 함
       if (riseTime > transitTime) {
         if (transit.h[0] == '0') {
           transitTime = getTime(+year, +month, +date + 1, +transit.h, +transit.m);
@@ -88,21 +90,21 @@ const LunImage = () => {
           }
       }
 
-      if ((riseTime < nowTime2) && (nowTime2 < transitTime)) {
+      if ((riseTime < nowTime) && (nowTime < transitTime)) {
         setDirectionCSS({
           justifyContent: 'flex-start',
           alignItems: 'center',
           height: '12rem'
         });
         dispatch(canISeeTheMoonAction());
-      } else if (nowTime2 == transitTime) {
+      } else if (nowTime == transitTime) {
         setDirectionCSS({
           justifyContent: 'center',
           alignItems: 'flex-start',
           height: '12rem'
         });
         dispatch(canISeeTheMoonAction());
-      } else if ((transitTime < nowTime2) && (nowTime2 < setTime)) {
+      } else if ((transitTime < nowTime) && (nowTime < setTime)) {
         setDirectionCSS({
           justifyContent: 'flex-end',
           alignItems: 'center',

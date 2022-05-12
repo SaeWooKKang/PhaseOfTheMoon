@@ -1,7 +1,7 @@
 import { go } from 'fxjs';
 import { plusZero } from '../../../fs';
 
-const addNum = (a: number, b: number) => a + b;
+
 const addStr = (a: string, b: string) => a + b;
 
 /**
