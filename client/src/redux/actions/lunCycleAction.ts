@@ -24,6 +24,12 @@ export interface CycleResponse {
   suntransit: 'number';
 }
 
+/**
+ * data {aste: '2112  ', astm: '0346459  '}
+ * 값에 공백이 있네 
+ * 순회해서 공백 없애야 함 
+ * 
+ */
 export const lunCycle = createAsyncThunk(
   "lun/cycle",
   async (data, thunkAPI):Promise<CycleResponse> => {
@@ -31,6 +37,7 @@ export const lunCycle = createAsyncThunk(
       .then(res => res.data.items.item)
       .catch(e => console.log(e));
     
+      // console.log(response);
     return response;
   }
 );

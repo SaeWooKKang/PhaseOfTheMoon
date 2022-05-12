@@ -4,7 +4,8 @@ import { useAppSelector, useAppDispath } from '../../../redux/hooks';
 import { canISeeTheMoonAction } from '../../../redux/reducers/moonSlice';
 
 import { LunImageWrapper, MoonDirection, MoonDirectionProps } from './style';
-import { toMinute, now } from './fs'
+import { now, getTime, cutToHourAndMinute } from './fs'
+import { makeYearMonthDate } from "../../../fs";
 
 const LunImage = () => {
   const dispatch = useAppDispath();
@@ -12,14 +13,14 @@ const LunImage = () => {
   const day = useAppSelector(({lun: { day }}) => day);
   const { data, isLoading } = useAppSelector(({ lun }) => lun.cycle);
   const canISeeTheMoon = useAppSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
-
+  
   const [directionCSS, setDirectionCSS] = useState<MoonDirectionProps>({ 
     justifyContent: 'center',
     alignItems: 'nomal',
     height:''
   });
 
-  useEffect(() => { findMoonLocationAndSet() }, [isLoading]);
+  useEffect(() => { findMoonLocationAndSet() }, [data]);
 
   const makeLunImgByDate = (date: number) => {
     if(date < 2){
@@ -62,28 +63,46 @@ const LunImage = () => {
 
   const findMoonLocationAndSet = () => {
     if (data) {
-      console.log(typeof data.moonrise);
-      const rise = toMinute(data.moonrise);
-      const transit =  toMinute(data.moontransit);
-      const set = toMinute(data.moonset);
-      const nowTime = toMinute(now());
+      const { year, month, date } = makeYearMonthDate();
 
-      if (nowTime < rise) {
-      } else if ( nowTime < transit) {
+      const rise = cutToHourAndMinute(data.moonrise);
+      const transit = cutToHourAndMinute(data.moontransit);
+      const set = cutToHourAndMinute(data.moonset);
+      const nowTime = cutToHourAndMinute(now());
+
+      let riseTime = getTime(+year, +month, +date, +rise.h, +rise.m);
+      let transitTime = getTime(+year, +month, +date, +transit.h, +transit.m);
+      let setTime = getTime(+year, +month, +date, +set.h, +set.m);
+
+      // 이건 현재 시간 기준이 맞는데
+      let nowTime2 = getTime(+year, +month, +date, +nowTime.h, +nowTime.m);
+
+      if (riseTime > transitTime) {
+        if (transit.h[0] == '0') {
+          transitTime = getTime(+year, +month, +date + 1, +transit.h, +transit.m);
+          setTime = getTime(+year, +month, +date + 1, +set.h, +set.m);
+        }
+      } else if (riseTime > setTime) {
+          if(set.h[0] == '0') {
+            setTime = getTime(+year, +month, +date + 1, +set.h, +set.m);
+          }
+      }
+
+      if ((riseTime < nowTime2) && (nowTime2 < transitTime)) {
         setDirectionCSS({
           justifyContent: 'flex-start',
           alignItems: 'center',
           height: '12rem'
         });
         dispatch(canISeeTheMoonAction());
-      } else if (nowTime == transit) {  
+      } else if (nowTime2 == transitTime) {
         setDirectionCSS({
           justifyContent: 'center',
           alignItems: 'flex-start',
           height: '12rem'
         });
         dispatch(canISeeTheMoonAction());
-      } else if (nowTime < set) {
+      } else if ((transitTime < nowTime2) && (nowTime2 < setTime)) {
         setDirectionCSS({
           justifyContent: 'flex-end',
           alignItems: 'center',

@@ -1,16 +1,27 @@
 import { go } from 'fxjs';
+import { plusZero } from '../../../fs';
 
-const add = (a: string, b: string) => `${a}${b}`;
+const addNum = (a: number, b: number) => a + b;
+const addStr = (a: string, b: string) => a + b;
 
-type NumSubStrFn = (start: number, end: number, t: string) => number;
-const numSubstr: NumSubStrFn = (start, end, t) => Number(t.substring(start, end));
-
-export const toMinute = (t: string) => 
-  add(String(numSubstr(0, 2, t) * 60),  String(numSubstr(2, 4, t)));
-
+/**
+ * @returns 시간,분 네자리 반환 ex) 1823
+ */
 export const now = () => go(
   new Date(),
-  (date: Date) => add(
-    String(date.getHours()),
-    String(date.getMinutes()))
+  (date: Date) => addStr(
+    String(date.getHours()), String(date.getMinutes()))
 ) as unknown as string;
+
+/**
+ * @param s API 날짜 받음
+ * @returns 시간하고 분으로 짤라서 반환함
+ */
+export const cutToHourAndMinute = (s: string) => {
+  return {h: s.substring(0, 2), m: s.substring(2, 4) }
+}
+
+export const getTime = (y: number, m: number, d: number, hour=0, minute=0) => {
+  
+  return new Date(`${y}-${plusZero(String(m))}-${plusZero(String(d))}T${plusZero(String(hour))}:${plusZero(String(minute))}:00`).getTime();
+};
