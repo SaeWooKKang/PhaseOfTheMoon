@@ -22,7 +22,7 @@ const config: Configuration = {
     rules: [{
       loader: 'babel-loader',
       options: { 
-        plugins: ['react-refresh/babel'],
+        // plugins: ['react-refresh/babel'],
         presets: ["@babel/preset-env", "@babel/preset-react"]
       },
     }, {
@@ -32,7 +32,7 @@ const config: Configuration = {
     }],
   },
   plugins: [
-    new ReactRefreshPlugin(),
+    // new ReactRefreshPlugin(),
     new ForkTsCheckerWebpackPlugin()
   ],
   output: {
