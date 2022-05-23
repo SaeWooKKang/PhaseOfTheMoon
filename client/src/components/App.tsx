@@ -39,6 +39,7 @@ const App = () => {
 
   return (
     <>
+      <>프로덕션 확인용</>
       <GlobalStyle />
       <AppWrapper> 
         <div className='ctn-components'>

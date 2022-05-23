@@ -10,7 +10,7 @@ interface Configuration extends WebpackConfiguration {
 
 const config: Configuration = {
   name: 'ts-setting',
-  mode: 'development',
+  mode: 'production',
   devtool: 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
