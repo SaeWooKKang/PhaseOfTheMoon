@@ -11,8 +11,31 @@ import { makeYearMonthDate } from '../fs';
 const AppWrapper = styled.div`
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  header {
+    margin-left: 10px;
+    display: flex;
+    width: 65vw;
+    margin-bottom: 15px;
+    color: #fff;
+
+    a {
+      border: 1px solid #fff;
+      border-radius: 3px;
+      padding: 2px 6px;
+      /* background: rgb(255,255,255, 0.9); */
+      color: #fff;
+    }
+
+    // 선택된 버튼 적용할 css
+    a:nth-child(1) {
+      background: #fff;
+      color: #254EDB
+    }
+  }
 
   .ctn-components {
     display: flex;
@@ -31,6 +54,7 @@ const AppWrapper = styled.div`
       justify-content: center;
       align-items: center;
       font-size: 0.8rem;
+      
     }
   }
 `;
@@ -41,6 +65,12 @@ const App = () => {
     <>
       <GlobalStyle />
       <AppWrapper> 
+        <header>
+          <nav>
+            <a>Today</a> | {' '}
+            <a>Weekly</a>
+          </nav>
+        </header>
         <div className='ctn-components'>
             <div className='text-year-month-date'>
               { `${year}년 ${month}월 ${date}일 / 서울` }
