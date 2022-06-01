@@ -7,6 +7,7 @@ import LunTime from '../components/sections/LunTime';
 import AppLayout from '../components/AppLayout';
 
 import { makeYearMonthDate } from '../fs';
+import GlobalStyle from '../style/GlobalStyle';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -23,6 +24,8 @@ const Today = () => {
   const { year, month, date } = makeYearMonthDate();
 
   return (
+    <>
+    <GlobalStyle />
     <AppLayout>
       <Wrapper>
         <div className='text-year-month-date'>
@@ -33,6 +36,7 @@ const Today = () => {
         <LunTime />
       </Wrapper>
     </AppLayout>
+    </>
   );
 };
 

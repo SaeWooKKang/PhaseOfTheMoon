@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 interface Props {
   children: JSX.Element;
 }
@@ -54,8 +56,8 @@ const AppLayout = (props: Props ) => {
       <AppWrapper> 
         <header>
           <nav>
-            <a>Today</a> | {' '}
-            <a>Weekly</a>
+            <Link to={'/today'}>Today</Link> | {' '}
+            <Link to={'/weekly'}>Weekly</Link>
           </nav>
         </header>
         <div className='ctn-components'>
