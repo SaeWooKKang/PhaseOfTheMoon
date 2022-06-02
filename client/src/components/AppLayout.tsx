@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 interface Props {
   children: JSX.Element;
@@ -25,28 +25,26 @@ const AppWrapper = styled.div`
       border: 1px solid #fff;
       border-radius: 3px;
       padding: 2px 6px;
-      /* background: rgb(255,255,255, 0.9); */
       color: #fff;
-    }
-
-    // 선택된 버튼 적용할 css
-    a:nth-child(1) {
-      background: #fff;
-      color: #254EDB
+      text-decoration: none;
     }
   }
 
   .ctn-components {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+
     width: 65vw;
     height: 80vh;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
     background-color: #FBFAF8;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     border-radius: 15px;
     padding: 15px 0px 15px 0px;
+    overflow: hidden;
+    
   }
 `;
 const AppLayout = (props: Props ) => {
@@ -56,13 +54,28 @@ const AppLayout = (props: Props ) => {
       <AppWrapper> 
         <header>
           <nav>
-            <Link to={'/today'}>Today</Link> | {' '}
-            <Link to={'/weekly'}>Weekly</Link>
+            <NavLink 
+              className='a' 
+              to={'/today'} 
+              style={({ isActive }) => { 
+                return {
+                  background: isActive ? '#fff' : '',
+                  color: isActive ? '#254EDB' : ''
+              }}}>Today</NavLink> | {' '}
+            <NavLink 
+              className='a'
+              to={'/weekly'}
+              style={({ isActive }) => { 
+                return {
+                  background: isActive ? '#fff' : '',
+                  color: isActive ? '#254EDB' : ''
+              }}}>Weekly</NavLink>
           </nav>
+          <Outlet />
         </header>
-        <div className='ctn-components'>
+        <main className='ctn-components'>
           { props.children }
-        </div>
+        </main>
       </AppWrapper>
     </>
   );
