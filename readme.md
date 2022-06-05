@@ -1,7 +1,7 @@
 # 🌙 달에 관한 정보 제공 앱
 
 ## OverView
-<img width='60%' src='https://user-images.githubusercontent.com/87258182/166878748-dbaf76de-a7a4-4155-8df2-3fa7fe40f0b4.gif'>
+<img width='30%' src='https://user-images.githubusercontent.com/87258182/172050337-e9113999-9199-43dc-9ff3-7a9a6a38f6ca.gif'>
 
 ## About
 문득 달을 관측할 수 있는 시간이 궁금해졌다. 공공데이터 포털에서 관련 api를 제공하는것을 찾아 제작하게 되었다. 
@@ -11,6 +11,9 @@
 - 달의 위치를 시각적으로 표현 
 
 ## Update
+**2022.06.05**
+- 주간 데이터를 볼 수 있는 weekly 페이지 추가 
+
 **2022.05.05**
 - TypeScript 적용
 
