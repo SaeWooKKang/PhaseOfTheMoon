@@ -1,5 +1,5 @@
 import path from 'path';
-import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+// import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import { Configuration as WebpackConfiguration } from "webpack";
 import { Configuration as WebpackDevServerConfiguration } from "webpack-dev-server";
@@ -10,7 +10,7 @@ interface Configuration extends WebpackConfiguration {
 
 const config: Configuration = {
   name: 'ts-setting',
-  mode: 'development',
+  mode: 'production',
   devtool: 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
@@ -22,7 +22,7 @@ const config: Configuration = {
     rules: [{
       loader: 'babel-loader',
       options: { 
-        plugins: ['react-refresh/babel'],
+        // plugins: ['react-refresh/babel'],
         presets: ["@babel/preset-env", "@babel/preset-react"]
       },
     }, {
@@ -32,7 +32,7 @@ const config: Configuration = {
     }],
   },
   plugins: [
-    new ReactRefreshPlugin(),
+    // new ReactRefreshPlugin(),
     new ForkTsCheckerWebpackPlugin()
   ],
   output: {

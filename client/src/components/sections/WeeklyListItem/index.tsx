@@ -5,11 +5,13 @@ interface Props {
   rise: string;
   transit: string;
   set: string;
+  date: string;
 }
 
 const Wrapper = styled.section`
   width: 96%;
   color: #fff;
+  font-weight: 100;
 
   display: flex;
   justify-content: space-between;
@@ -37,6 +39,7 @@ const Wrapper = styled.section`
     padding: initial;
 
     li {
+      width: 33.3333%;
       list-style-type: none;
       padding-left: 7px;
     }
@@ -44,10 +47,14 @@ const Wrapper = styled.section`
 `;
 
 const WeeklyListItem = (props: Props) => {
-
+  let date = String(props.date).split('');
+  const month = date.slice(4,6).join('');
+  const day = date.slice(6).join('');
+  
   return (
     <Wrapper>
-      <div className='day'>06월11일</div> 
+
+      <div className='day'>{`${month}월 ${day}일`}</div> 
       <ul>
         <li>월출: { props.rise } </li>
         <li>월중: { props.transit }</li>

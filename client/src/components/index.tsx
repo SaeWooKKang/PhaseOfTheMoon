@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import App from './App';
 import Today from '../Routes/Today';
-import Weekly from '../Routes/Weekly';
+import Weekly from '../Routes/Weekly'
 
 import store from '../redux/store';
 import { Provider } from 'react-redux';
