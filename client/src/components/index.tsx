@@ -14,9 +14,9 @@ ReactDOM.render(
   <Provider store={ store }>  
     <BrowserRouter>
       <Routes>
-        <Route path='/dist' element={ <App />} />
+        <Route path='/' element={ <App /> } />
         <Route path='today' element={ <Today/> } />
-        <Route path='weekly' element={ <Weekly/>}/>
+        <Route path='weekly' element={ <Weekly/> }/>
       </Routes>
     </BrowserRouter>
   </Provider>
