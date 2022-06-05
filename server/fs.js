@@ -1,7 +1,7 @@
 const plusZero = (v) => /../.test(v) ? v : `0${v}`;
 
-exports.date = () => {
-  const now = new Date();
+exports.date = (ms) => {
+  const now = new Date(ms);
 
   const year = now.getFullYear();
   const month = plusZero(now.getMonth() + 1);
