@@ -22,6 +22,7 @@ const Wrapper = styled.div`
 
 const Today = () => {
   const { year, month, date } = makeYearMonthDate();
+  alert('🚧 현재 공공데이터포털의 api 접속이 안됩니다. 🚧 ');
 
   return (
     <>
