@@ -44,7 +44,6 @@ export const LunImageWrapper = styled.div`
 export const MoonDirection = styled.div<MoonDirectionProps>`
   width: 60%;
   height: ${({ height }) => height || 'auto'};
-  margin-top: 10px;
   display: flex;
   justify-content: ${ ({ justifyContent }) => justifyContent || 'center' };
   align-items: ${ ({ alignItems }) => alignItems || 'flex-start' };
