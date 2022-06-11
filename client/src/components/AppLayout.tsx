@@ -8,6 +8,7 @@ interface Props {
 }
 
 const AppWrapper = styled.div`
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,9 +29,12 @@ const AppWrapper = styled.div`
       color: #fff;
       text-decoration: none;
     }
+    @media (max-width: 510px) {
+      width: 95%;
+    }
   }
 
-  .ctn-components {
+  main {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,39 +49,44 @@ const AppWrapper = styled.div`
     padding: 15px 0px 15px 0px;
     overflow: hidden;
     
+    @media (max-width: 510px) {
+      width: 95%;
+    }
   }
 `;
 const AppLayout = (props: Props ) => {
 
   return (
-    <>
-      <AppWrapper> 
-        <header>
-          <nav>
-            <NavLink 
-              className='a' 
-              to={'/today'} 
-              style={({ isActive }) => { 
-                return {
-                  background: isActive ? '#fff' : '',
-                  color: isActive ? '#254EDB' : ''
-              }}}>Today</NavLink> | {' '}
-            <NavLink 
-              className='a'
-              to={'/weekly'}
-              style={({ isActive }) => { 
-                return {
-                  background: isActive ? '#fff' : '',
-                  color: isActive ? '#254EDB' : ''
-              }}}>Weekly</NavLink>
-          </nav>
-          <Outlet />
-        </header>
-        <main className='ctn-components'>
-          { props.children }
-        </main>
-      </AppWrapper>
-    </>
+    <AppWrapper> 
+
+      {/* header  */}
+      <header>
+        <nav>
+          <NavLink 
+            className='a' 
+            to={'/today'} 
+            style={({ isActive }) => { 
+              return {
+                background: isActive ? '#fff' : '',
+                color: isActive ? '#254EDB' : ''
+            }}}>Today</NavLink> | {' '}
+          <NavLink 
+            className='a'
+            to={'/weekly'}
+            style={({ isActive }) => { 
+              return {
+                background: isActive ? '#fff' : '',
+                color: isActive ? '#254EDB' : ''
+            }}}>Weekly</NavLink>
+        </nav>
+        <Outlet />
+      </header>
+
+      {/* main */}
+      <main>
+        { props.children }
+      </main>
+    </AppWrapper>
   );
 };
 

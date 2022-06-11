@@ -44,6 +44,9 @@ const Wrapper = styled.section`
       padding-left: 7px;
     }
   }
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const WeeklyListItem = (props: Props) => {

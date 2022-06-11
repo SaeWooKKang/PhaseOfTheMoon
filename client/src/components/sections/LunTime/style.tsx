@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
-export const LunTimeWrapper = styled.div`
+export const LunTimeWrapper = styled.div<{ justifyContent : boolean }>`
   width: 100%;
+  height: 100%;
   margin: 0;
   display: flex;
   flex-direction:column;
   align-items: center;
+  justify-content: ${props => props.justifyContent ? 'flex-start' : 'center' };
 
   .loading-ment {
     width: 80%;
@@ -16,7 +18,6 @@ export const LunTimeWrapper = styled.div`
     width: 100%;
     display: flex; 
     justify-content: center;
-    /* margin-top: 1.3rem; */
     .cnt-items-rise-transit-set {
       display: flex; 
       width: 100%;

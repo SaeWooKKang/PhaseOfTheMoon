@@ -4,6 +4,7 @@ export const LunDayWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 
   .loading-ment {
     display: flex;

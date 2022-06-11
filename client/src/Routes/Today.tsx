@@ -31,6 +31,7 @@ const Wrapper = styled.div`
 const Today = () => {
   const dispatch = useAppDispath();
   const { cycle, day } = useAppSelector(({ lun })=> lun);
+  const canISeeTheMoon = useAppSelector(({ lun }) => lun.canISeeTheMoon );
 
   const { year, month, date } = useMemo(() => {
     return  makeYearMonthDate();
@@ -63,7 +64,7 @@ const Today = () => {
               height: '60%',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center'}}
+              justifyContent: canISeeTheMoon ? 'center' : 'flex-start' }}
               >
               <LunImage />
               <LunTime />

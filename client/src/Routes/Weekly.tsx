@@ -16,12 +16,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5%;
-  overflow: hidden;
+  overflow: scroll;
   
   header {
     width: 100%;
-    height: 30%;
+    height: 20%;
     display: flex;
     margin: 0;
     margin-bottom: 30px;
@@ -29,7 +28,7 @@ const Wrapper = styled.div`
     color: #254EDB;
     
     h2 {
-      margin: 0;
+      margin: 10px 0 0 0;
     }
     h4 {
       color: #4164d5;
@@ -41,6 +40,10 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  
+  @media (max-width: 500px) {
+    width: 96;
   }
 `;
 const LoadingWrapper = styled.div`

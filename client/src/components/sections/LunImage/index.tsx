@@ -117,33 +117,31 @@ const LunImage = () => {
 
   return  ( 
     <LunImageWrapper>    
-      { day.isLoading 
-        ? <div className='loading-ment'>Loading...</div> 
-        : <div className='wrapper-child'>
+      <div className='wrapper-child'>
 
-            <MoonDirection 
-              justifyContent={ directionCSS.justifyContent } 
-              alignItems={ directionCSS.alignItems }
-              height={ directionCSS.height }
-              >
-              <div className='lun-img-by-date'>
-                  { makeLunImgByDate(day.data as number) }
-              </div>
-            </MoonDirection>
-    
-            { 
-              !canISeeTheMoon || 
-                <>
-                  <div className='direction'>
-                    <div>⇢</div>
-                    <div>⇢</div>
-                  </div>
-    
-                  <hr className='horizon' />
-                </>
-            }
-        </div>
-      }  
+        {/* 달 이미지  */}
+        <MoonDirection 
+          justifyContent={ directionCSS.justifyContent } 
+          alignItems={ directionCSS.alignItems }
+          height={ directionCSS.height }
+          >
+          <div className='lun-img-by-date'>
+              { makeLunImgByDate(day.data as number) }
+          </div>
+        </MoonDirection>
+
+        {/* 수평선  */}
+        { !canISeeTheMoon || 
+          <>
+            <div className='direction'>
+              <div>⇢</div>
+              <div>⇢</div>
+            </div>
+
+            <hr className='horizon' />
+          </>
+        }
+      </div>
     </LunImageWrapper>
   );
 };

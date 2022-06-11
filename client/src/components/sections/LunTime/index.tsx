@@ -9,12 +9,12 @@ const LunTime = () => {
   const canISeeTheMoon = useAppSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
   
   return (
-    <LunTimeWrapper>
+    <LunTimeWrapper justifyContent = { canISeeTheMoon }>
       <>
         <div className='cnt-rise-transit-set'>
           <div className='cnt-items-rise-transit-set'>
             { 
-                <CycleWrapper flexDirection={canISeeTheMoon}>
+                <CycleWrapper flexDirection={ canISeeTheMoon }>
                   <div className='item-rise-transit-set'>월출 { data!.moonrise }</div>
                   <div className='item-rise-transit-set'>월중 { data!.moontransit }</div>
                   <div className='item-rise-transit-set'>월몰 { data!.moonset }</div>
@@ -23,11 +23,10 @@ const LunTime = () => {
           </div>
         </div>
 
-        { 
-          canISeeTheMoon ||
-            <div className='ment'>
-              현재 시각은 달을 볼 수 없습니다.
-            </div>
+        { canISeeTheMoon ||
+          <div className='ment'>
+            현재 시각은 달을 볼 수 없습니다.
+          </div>
         } 
       </>
     </LunTimeWrapper>)
