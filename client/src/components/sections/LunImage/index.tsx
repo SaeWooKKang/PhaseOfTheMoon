@@ -10,9 +10,8 @@ import { makeYearMonthDate } from "../../../fs";
 const LunImage = () => {
   const dispatch = useAppDispath();
 
-  const day = useAppSelector(({lun: { day }}) => day);
-  const { data, isLoading } = useAppSelector(({ lun }) => lun.cycle);
-  
+  const day_data = useAppSelector(({lun: { day }}) => day.data);
+  const cycle_data = useAppSelector(({ lun }) => lun.cycle.data);
   const canISeeTheMoon = useAppSelector(({ lun: { canISeeTheMoon } })=> canISeeTheMoon);
   
   const [directionCSS, setDirectionCSS] = useState<MoonDirectionProps>({ 
@@ -21,7 +20,7 @@ const LunImage = () => {
     height:''
   });
 
-  useEffect(() => { findMoonLocationAndSet() }, [data]);
+  useEffect(() => { findMoonLocationAndSet() }, []);
 
   const makeLunImgByDate = (date: number) => {
     if(date < 2){
@@ -68,10 +67,10 @@ const LunImage = () => {
    * 위치 비교하여 css 지정
    */
   const findMoonLocationAndSet = () => {
-    if (data) {
+    if (cycle_data) {
       const { year, month, date } = makeYearMonthDate();
 
-      const times = [data.moonrise, data.moontransit, data.moonset, now()];
+      const times = [cycle_data.moonrise, cycle_data.moontransit, cycle_data.moonset, now()];
       const [rise, transit, set, present] = times
         .map(time => cutToHourAndMinute(time));
 
@@ -114,7 +113,7 @@ const LunImage = () => {
       }
     }
   };
-
+  
   return  ( 
     <LunImageWrapper>    
       <div className='wrapper-child'>
@@ -126,7 +125,7 @@ const LunImage = () => {
           height={ directionCSS.height }
           >
           <div className='lun-img-by-date'>
-              { makeLunImgByDate(day.data as number) }
+              { makeLunImgByDate(day_data as number) }
           </div>
         </MoonDirection>
 

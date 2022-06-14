@@ -10,12 +10,9 @@ const LunDay = () => {
   return (
     <LunDayWrapper>
       <div className='lunAge'>
-        { !day.isLoading 
-          && 
-            <div className='date'>
-              월령 { day.data }일
-            </div>
-        }
+        <div className='date'>
+          월령 { day.data }일
+        </div>
       </div>
     </LunDayWrapper>
   );

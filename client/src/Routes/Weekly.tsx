@@ -16,7 +16,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
   
   header {
     width: 100%;
@@ -36,14 +35,16 @@ const Wrapper = styled.div`
   }
   .weekly-list-items {
     width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
   
-  @media (max-width: 500px) {
-    width: 96;
+  @media (max-width: 767px) {
+    width: 95%;
   }
 `;
 const LoadingWrapper = styled.div`

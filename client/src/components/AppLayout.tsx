@@ -29,7 +29,7 @@ const AppWrapper = styled.div`
       color: #fff;
       text-decoration: none;
     }
-    @media (max-width: 510px) {
+    @media (max-width: 767px) {
       width: 95%;
     }
   }
@@ -49,7 +49,7 @@ const AppWrapper = styled.div`
     padding: 15px 0px 15px 0px;
     overflow: hidden;
     
-    @media (max-width: 510px) {
+    @media (max-width: 767px) {
       width: 95%;
     }
   }

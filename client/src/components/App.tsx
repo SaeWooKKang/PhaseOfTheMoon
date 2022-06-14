@@ -4,7 +4,6 @@ import GlobalStyle from '../style/GlobalStyle'
 import styled from 'styled-components';
 
 import Today from '../Routes/Today';
-// import Weekly from '../Routes/Weekly';
 
 const Wrapper = styled.div`
   .a:nth-child(1) {

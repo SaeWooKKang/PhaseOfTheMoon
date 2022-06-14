@@ -30,12 +30,12 @@ const Wrapper = styled.div`
 
 const Today = () => {
   const dispatch = useAppDispath();
-  const { cycle, day } = useAppSelector(({ lun })=> lun);
+  const cycle_data = useAppSelector(({ lun })=> lun.cycle.data);
+  const day_data = useAppSelector(({ lun })=> lun.day.data);
+
   const canISeeTheMoon = useAppSelector(({ lun }) => lun.canISeeTheMoon );
 
-  const { year, month, date } = useMemo(() => {
-    return  makeYearMonthDate();
-  }, []);
+  const { year, month, date } = useMemo(() => makeYearMonthDate(), []);
 
   useEffect(() => { 
     dispatch(lunDay());
@@ -47,7 +47,7 @@ const Today = () => {
     <GlobalStyle />
     <AppLayout>
       <Wrapper>
-        { cycle.data && day.data ? 
+        { cycle_data && day_data ? 
           <>
             {/* 년, 월, 일 */}
             <div className='text-year-month-date' style={{ height: '10%' }}>
